@@ -1,0 +1,54 @@
+Writing the main page of a web app
+from flask import Flask
+app=Flask(__name__)
+@app.route('/')
+def index():
+    return "<h1>Ananyaa's Flask app</h1>"
+@app.route('/about')
+def about():
+    return "<h3>About Ananyaa</h3><p>This is a simple Flask application.</p>"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Dynamic Routing (This code is to return a HTML file)
+from flask import Flask
+app=Flask(__name__)
+@app.route('/')
+def index():
+    return "<h1>Ananyaa's Flask app</h1>"
+@app.route('/about')
+def about():
+    return "<h3>About Ananyaa</h3><p>This is a simple Flask application.</p>"
+@app.route('/users/<name>')
+def user(name):
+    return f"<h2>Hello,{name}!</h2>"
+if __name__ == '__main__':
+    app.run(debug=True)
+
+To return a json file
+from flask import Flask, jsonify
+app=Flask(__name__)
+@app.route('/')
+def index():
+    return jsonify(message='Hello world')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+GET and POST commands
+from flask import Flask, jsonify
+app=Flask(__name__)
+@app.route('/')
+def index():
+    return jsonify(message='Hello world')
+@app.route('/health',methods=['GET','POST'])
+def health():
+    if request.method==['GET']:
+        return jsonify(status='OK', method='GET'), 200
+    if request.method==['POST']:
+        return jsonify(status='OK', method='POST'), 200
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
